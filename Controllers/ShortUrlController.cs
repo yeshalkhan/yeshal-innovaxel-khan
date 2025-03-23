@@ -37,6 +37,9 @@ namespace UrlShorteningService.Controllers
         [HttpPost("shorten")]
         public async Task<IActionResult> CreateShortUrl(string url)
         {
+            if (string.IsNullOrEmpty(url))
+                return BadRequest(new { error = "URL is required" });
+
             var shortCode = GenerateShortCode();
             var shortUrl = new ShortUrl
             {
@@ -49,6 +52,9 @@ namespace UrlShorteningService.Controllers
 
             return CreatedAtAction(nameof(GetOriginalUrl), new { shortCode }, shortUrl);
         }
+
+        
+
 
     }
 }
