@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Text.RegularExpressions;
 using UrlShorteningService.Data;
 using UrlShorteningService.Models;
 
@@ -22,6 +23,18 @@ namespace UrlShorteningService.Controllers
             return Guid.NewGuid().ToString().Substring(0, 6);
         }
 
+        private bool IsValidUrl(string url)
+        {
+            if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? uriResult))
+                return false;
+
+            string host = uriResult.Host;
+
+            string domainPattern = @"^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$";
+
+            return Regex.IsMatch(host, domainPattern);
+        }
+
         [HttpGet("shorten/{shortCode}")]
         public async Task<IActionResult> GetOriginalUrl(string shortCode)
         {
@@ -38,8 +51,8 @@ namespace UrlShorteningService.Controllers
         [HttpPost("shorten")]
         public async Task<IActionResult> CreateShortUrl([FromBody] UrlRequestDto urlRequest)
         {
-            if (string.IsNullOrEmpty(urlRequest.Url))
-                return BadRequest(new { error = "URL is required" });
+            if (string.IsNullOrWhiteSpace(urlRequest.Url) || !IsValidUrl(urlRequest.Url))
+                return BadRequest(new { error = "Invalid URL format" });
 
             var shortCode = GenerateShortCode();
             var shortUrl = new ShortUrl
@@ -57,12 +70,12 @@ namespace UrlShorteningService.Controllers
         [HttpPut("shorten/{shortCode}")]
         public async Task<IActionResult> UpdateShortUrl(string shortCode, [FromBody] UrlRequestDto urlRequest)
         {
-            if (string.IsNullOrEmpty(urlRequest.Url))
-                return BadRequest(new { error = "URL is required" });
-
             var shortUrl = await _context.ShortUrls.FirstOrDefaultAsync(s => s.ShortCode == shortCode);
             if (shortUrl == null)
                 return NotFound(new { error = "Short URL not found" });
+
+            if (string.IsNullOrWhiteSpace(urlRequest.Url) || !IsValidUrl(urlRequest.Url))
+                return BadRequest(new { error = "Invalid URL format" });
 
             shortUrl.Url = urlRequest.Url;
             shortUrl.UpdatedAt = DateTime.UtcNow;

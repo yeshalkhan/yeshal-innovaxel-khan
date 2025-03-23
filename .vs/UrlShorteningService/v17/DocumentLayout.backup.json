@@ -7,10 +7,6 @@
       "RelativeMoniker": "D:0:0:{EE6E3F32-203E-4466-BBBA-11BF8DD4F75C}|UrlShorteningService.csproj|solutionrelative:controllers\\shorturlcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE6E3F32-203E-4466-BBBA-11BF8DD4F75C}|UrlShorteningService.csproj|d:\\yeshal\\urlshorteningservice\\models\\urlrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EE6E3F32-203E-4466-BBBA-11BF8DD4F75C}|UrlShorteningService.csproj|solutionrelative:models\\urlrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EE6E3F32-203E-4466-BBBA-11BF8DD4F75C}|UrlShorteningService.csproj|d:\\yeshal\\urlshorteningservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{EE6E3F32-203E-4466-BBBA-11BF8DD4F75C}|UrlShorteningService.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -38,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,33 +50,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UrlRequestDto.cs",
-              "DocumentMoniker": "D:\\Yeshal\\UrlShorteningService\\Models\\UrlRequestDto.cs",
-              "RelativeDocumentMoniker": "Models\\UrlRequestDto.cs",
-              "ToolTip": "D:\\Yeshal\\UrlShorteningService\\Models\\UrlRequestDto.cs",
-              "RelativeToolTip": "Models\\UrlRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T16:35:18.889Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ShortUrlController.cs",
               "DocumentMoniker": "D:\\Yeshal\\UrlShorteningService\\Controllers\\ShortUrlController.cs",
               "RelativeDocumentMoniker": "Controllers\\ShortUrlController.cs",
               "ToolTip": "D:\\Yeshal\\UrlShorteningService\\Controllers\\ShortUrlController.cs",
               "RelativeToolTip": "Controllers\\ShortUrlController.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAAACwAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAAAEcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-23T15:44:12.775Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Yeshal\\UrlShorteningService\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -93,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\Yeshal\\UrlShorteningService\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
@@ -106,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "UrlShorteningService",
               "DocumentMoniker": "D:\\Yeshal\\UrlShorteningService\\UrlShorteningService.csproj",
               "RelativeDocumentMoniker": "UrlShorteningService.csproj",
@@ -119,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Yeshal\\UrlShorteningService\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -132,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "ShortUrl.cs",
               "DocumentMoniker": "D:\\Yeshal\\UrlShorteningService\\Models\\ShortUrl.cs",
               "RelativeDocumentMoniker": "Models\\ShortUrl.cs",
