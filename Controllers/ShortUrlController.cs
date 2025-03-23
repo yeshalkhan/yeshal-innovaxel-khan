@@ -83,5 +83,14 @@ namespace UrlShorteningService.Controllers
             return NoContent();
         }
 
+        [HttpGet("shorten/{shortCode}/stats")]
+        public async Task<IActionResult> GetUrlStats(string shortCode)
+        {
+            var shortUrl = await _context.ShortUrls.FirstOrDefaultAsync(s => s.ShortCode == shortCode);
+            if (shortUrl == null)
+                return NotFound(new { error = "Short URL not found" });
+
+            return Ok(shortUrl);
+        }
     }
 }
