@@ -36,15 +36,15 @@ namespace UrlShorteningService.Controllers
         }
 
         [HttpPost("shorten")]
-        public async Task<IActionResult> CreateShortUrl([FromBody] string url)
+        public async Task<IActionResult> CreateShortUrl([FromBody] UrlRequestDto urlRequest)
         {
-            if (string.IsNullOrEmpty(url))
+            if (string.IsNullOrEmpty(urlRequest.Url))
                 return BadRequest(new { error = "URL is required" });
 
             var shortCode = GenerateShortCode();
             var shortUrl = new ShortUrl
             {
-                Url = url,
+                Url = urlRequest.Url,
                 ShortCode = shortCode
             };
 
@@ -55,16 +55,16 @@ namespace UrlShorteningService.Controllers
         }
 
         [HttpPut("shorten/{shortCode}")]
-        public async Task<IActionResult> UpdateShortUrl(string shortCode, [FromBody] string updatedUrl)
+        public async Task<IActionResult> UpdateShortUrl(string shortCode, [FromBody] UrlRequestDto urlRequest)
         {
-            if (string.IsNullOrEmpty(updatedUrl))
+            if (string.IsNullOrEmpty(urlRequest.Url))
                 return BadRequest(new { error = "URL is required" });
 
             var shortUrl = await _context.ShortUrls.FirstOrDefaultAsync(s => s.ShortCode == shortCode);
             if (shortUrl == null)
                 return NotFound(new { error = "Short URL not found" });
 
-            shortUrl.Url = updatedUrl;
+            shortUrl.Url = urlRequest.Url;
             shortUrl.UpdatedAt = DateTime.UtcNow;
 
             await _context.SaveChangesAsync();
