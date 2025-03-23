@@ -36,7 +36,7 @@ namespace UrlShorteningService.Controllers
         }
 
         [HttpPost("shorten")]
-        public async Task<IActionResult> CreateShortUrl(string url)
+        public async Task<IActionResult> CreateShortUrl([FromBody] string url)
         {
             if (string.IsNullOrEmpty(url))
                 return BadRequest(new { error = "URL is required" });
@@ -71,6 +71,17 @@ namespace UrlShorteningService.Controllers
             return Ok(shortUrl);
         }
 
+        [HttpDelete("shorten/{shortCode}")]
+        public async Task<IActionResult> DeleteShortUrl(string shortCode)
+        {
+            var shortUrl = await _context.ShortUrls.FirstOrDefaultAsync(s => s.ShortCode == shortCode);
+            if (shortUrl == null)
+                return NotFound(new { error = "Short URL not found" });
+
+            _context.ShortUrls.Remove(shortUrl);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
 
     }
 }
