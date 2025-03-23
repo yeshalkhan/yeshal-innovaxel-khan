@@ -1,1 +1,0 @@
-# yeshal-innovaxel-khan
