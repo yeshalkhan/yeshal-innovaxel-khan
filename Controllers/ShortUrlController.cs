@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using UrlShorteningService.Data;
 using UrlShorteningService.Models;
 
@@ -53,7 +54,22 @@ namespace UrlShorteningService.Controllers
             return CreatedAtAction(nameof(GetOriginalUrl), new { shortCode }, shortUrl);
         }
 
-        
+        [HttpPut("shorten/{shortCode}")]
+        public async Task<IActionResult> UpdateShortUrl(string shortCode, [FromBody] string updatedUrl)
+        {
+            if (string.IsNullOrEmpty(updatedUrl))
+                return BadRequest(new { error = "URL is required" });
+
+            var shortUrl = await _context.ShortUrls.FirstOrDefaultAsync(s => s.ShortCode == shortCode);
+            if (shortUrl == null)
+                return NotFound(new { error = "Short URL not found" });
+
+            shortUrl.Url = updatedUrl;
+            shortUrl.UpdatedAt = DateTime.UtcNow;
+
+            await _context.SaveChangesAsync();
+            return Ok(shortUrl);
+        }
 
 
     }
