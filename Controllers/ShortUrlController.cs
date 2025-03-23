@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using UrlShorteningService.Data;
+using UrlShorteningService.Models;
 
 namespace UrlShorteningService.Controllers
 {
@@ -13,5 +15,24 @@ namespace UrlShorteningService.Controllers
         {
             _context = context;
         }
+
+        private string GenerateShortCode()
+        {
+            return Guid.NewGuid().ToString().Substring(0, 6);
+        }
+
+        [HttpGet("shorten/{shortCode}")]
+        public async Task<IActionResult> GetOriginalUrl(string shortCode)
+        {
+            var shortUrl = await _context.ShortUrls.FirstOrDefaultAsync(s => s.ShortCode == shortCode);
+            if (shortUrl == null)
+                return NotFound(new { error = "URL not found" });
+
+            shortUrl.AccessCount++;
+            await _context.SaveChangesAsync();
+
+            return Ok(shortUrl);
+        }
+
     }
 }
