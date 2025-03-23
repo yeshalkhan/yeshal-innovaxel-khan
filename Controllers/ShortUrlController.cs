@@ -34,5 +34,21 @@ namespace UrlShorteningService.Controllers
             return Ok(shortUrl);
         }
 
+        [HttpPost("shorten")]
+        public async Task<IActionResult> CreateShortUrl(string url)
+        {
+            var shortCode = GenerateShortCode();
+            var shortUrl = new ShortUrl
+            {
+                Url = url,
+                ShortCode = shortCode
+            };
+
+            _context.ShortUrls.Add(shortUrl);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetOriginalUrl), new { shortCode }, shortUrl);
+        }
+
     }
 }
